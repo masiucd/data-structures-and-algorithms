@@ -1,0 +1,24 @@
+{
+  "name": "SpaceX",
+  "version": "1.0.0",
+  "description": "space x app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": "https://github.com/masiuciszek/SpaceX.git",
+  "author": "Marcell Ciszek",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.2.1",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}

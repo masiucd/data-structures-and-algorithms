@@ -2,13 +2,14 @@ const axios = require('axios');
 
 const {
   GraphQLObjectType,
-  GraphQLBoolean,
+  GraphQLInt,
   GraphQLString,
+  GraphQLBoolean,
   GraphQLList,
   GraphQLSchema,
-  GraphQLInt,
 } = require('graphql');
 
+// Launch Type
 const LaunchType = new GraphQLObjectType({
   name: 'Launch',
   fields: () => ({
@@ -21,6 +22,7 @@ const LaunchType = new GraphQLObjectType({
   }),
 });
 
+// Rocket Type
 const RocketType = new GraphQLObjectType({
   name: 'Rocket',
   fields: () => ({
@@ -30,14 +32,15 @@ const RocketType = new GraphQLObjectType({
   }),
 });
 
+// Root Query
 const RootQuery = new GraphQLObjectType({
-  name: 'RootQuery',
+  name: 'RootQueryType',
   fields: {
     launches: {
       type: new GraphQLList(LaunchType),
       resolve(parent, args) {
         return axios
-          .get(`https://api.spacexdata.com/v3/launches`)
+          .get('https://api.spacexdata.com/v3/launches')
           .then(res => res.data);
       },
     },
@@ -56,7 +59,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(RocketType),
       resolve(parent, args) {
         return axios
-          .get(`https://api.spacexdata.com/v3/rockets`)
+          .get('https://api.spacexdata.com/v3/rockets')
           .then(res => res.data);
       },
     },

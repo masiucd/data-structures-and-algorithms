@@ -9,6 +9,7 @@
 ## About <a name = "about"></a>
 
 Data structures and algorithms, understanding the fundamentals and concepts of why we use them why we should know them and how to apply them. The key concept is to ask yourself _why_?
+Why are we using these techniques, do we really need them?
 
 ## Getting Started <a name = "getting_started"></a>
 

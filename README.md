@@ -26,6 +26,7 @@ Why are we using these techniques, do we really need them?
   - sorting
   - recursion
   - caching
+  - memoization
 - Patterns
   - sliding window
   - frequent pattern

@@ -30,3 +30,7 @@ Why are we using these techniques, do we really need them?
 - Patterns
   - sliding window
   - frequent pattern
+
+### Example when we use the memoize technique
+
+<img src="./times10.png" width="100%"  />

@@ -1,3 +1,5 @@
+type MathFn = (n: number) => number
+
 const multiPlyWith10 = (n: number) => n * 10
 
 export const times10 = () => {
@@ -14,7 +16,8 @@ export const times10 = () => {
     }
   }
 }
-export const memoize = (fn: Function) => {
+
+export const memoize = (fn: MathFn) => {
   const cache = {}
   return (n: number) => {
     if (cache[n]) {
@@ -30,8 +33,14 @@ export const memoize = (fn: Function) => {
 }
 
 const f = memoize(multiPlyWith10)
+const f2 = memoize((n: number) => n + 5)
+
 console.log(f(10))
 console.log(f(20))
 console.log(f(10))
 console.log(f(30))
 console.log(f(20))
+
+console.log(f2(1))
+console.log(f2(2))
+console.log(f2(2))

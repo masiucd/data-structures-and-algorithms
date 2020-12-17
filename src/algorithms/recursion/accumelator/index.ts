@@ -10,4 +10,13 @@ const joinElements = (array: string[], str: string) => {
   return rec(0, "")
 }
 
-console.log(joinElements(["s", "cr", "t cod", " :) :)"], "e"))
+function joinElementsIterativeApproach(array: string[], str: string) {
+  let result = ""
+  for (let i = 0; i < array.length - 1; i += 1) {
+    result += array[i] + str
+  }
+
+  return result + array[array.length - 1]
+}
+
+// console.log(joinElementsIterativeApproach(["s", "cr", "t cod", " :) :)"], "e"))

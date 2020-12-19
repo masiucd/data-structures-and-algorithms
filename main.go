@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	reversestring "github.com/masiuciszek/data-structures/src/algorithms/recursion/reverse-string"
 	binarysearch "github.com/masiuciszek/data-structures/src/algorithms/search/binary-search"
 	"github.com/masiuciszek/data-structures/src/algorithms/search/linear"
 	uniqsort "github.com/masiuciszek/data-structures/src/algorithms/sort/uniq-sort"
@@ -27,4 +28,5 @@ func main()  {
 	fmt.Println(linear.Linear(xs2,3))
 
 	fmt.Println(binarysearch.BinarySearch(xs3,10))
+	fmt.Println(reversestring.ReverseString("hello"))
 }

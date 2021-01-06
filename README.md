@@ -13,6 +13,7 @@ Why are we using these techniques, do we really need them?
 ## Topics <a name = "topics"></a>
 
 - Data structures
+  - [Array](#array)
   - Linked lists
   - Stacks
   - Queues
@@ -68,3 +69,7 @@ Sometimes it is solution that we _must_ use, for example when traversing a `tree
 - We need a base case
 - Identify recursive cases
 - return when it time to return (when we have arrived at our condition)
+
+## Array <a name = "array"></a>
+
+What is array good for?

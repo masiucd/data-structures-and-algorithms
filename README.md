@@ -12,7 +12,7 @@ Why are we using these techniques, do we really need them?
 
 ## Topics <a name = "topics"></a>
 
-- Data structures
+- [Data structures](#ds)
   - [Array](#array)
   - Linked lists
   - Stacks
@@ -25,7 +25,7 @@ Why are we using these techniques, do we really need them?
   - sorting
   - [recursion](#recursion)
   - caching
-  - memoization
+  - [memoization](#memo)
 - Patterns
   - sliding window
   - frequent pattern
@@ -55,7 +55,7 @@ How much memory is used?
 
 <img  src="./bbb.jpeg" alt="big-o" />
 
-## Recursion <a name = "recursion"></a>
+### Recursion <a name = "recursion"></a>
 
 Recursion is simply when a function calls itself, however it is not the end here!
 It's just more then that, it's a technique a mindset a way of solving a problem.
@@ -70,6 +70,27 @@ Sometimes it is solution that we _must_ use, for example when traversing a `tree
 - Identify recursive cases
 - return when it time to return (when we have arrived at our condition)
 
-## Array <a name = "array"></a>
+### Memoization <a name = "memo"></a>
 
-What is array good for?
+---
+
+## Data Structures <a name = "ds"></a>
+
+### Array <a name = "array"></a>
+
+Depending if we are appending to the front or back the time complexity will not be the same. Insert at the end of the array is a constant time because we know where to insert it and don't have to change any position of the other elements in the array.
+
+Inserting at the front will however move every element `index + 1` to the right because the new element will be at position `0`.
+
+So pushing to the array at the end is `O(1)` constant time
+While unshifting is `O(n)` linear time
+
+**What is array good for?**
+| pros | cons |
+|--------------|--------------|
+| fast lookup | slow insert |
+| fast appends | slow deletes |
+| | |
+| | |
+
+While stings are immutable in Javascript working with strong in any problem solving task, like a coding interview, converting the string in to a array is very handy, with a lot of powerful array methods that we have in `javascript`, like `map` `reduce`,`filter` for example.

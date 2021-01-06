@@ -94,3 +94,11 @@ While unshifting is `O(n)` linear time
 | | |
 
 While stings are immutable in Javascript working with strong in any problem solving task, like a coding interview, converting the string in to a array is very handy, with a lot of powerful array methods that we have in `javascript`, like `map` `reduce`,`filter` for example.
+
+#### Extra
+
+How I bundle my `ts` files with `Deno`.
+
+```bash
+  deno bundle src/data-structures/stack/stack.ts bundle.js
+```

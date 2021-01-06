@@ -1,6 +1,8 @@
 export function stack<T>() {
+  /**
+   * storage will be private and not exported
+   */
   const storage: T[] = []
-
   /**
    *
    * @param item that we push into the Stack
@@ -19,6 +21,10 @@ export function stack<T>() {
     storage.pop()
   }
 
+  const isEmpty = (): boolean => {
+    return storage.length === 0
+  }
+
   /**
    * Returns the item from the top without removing it
    */
@@ -30,6 +36,7 @@ export function stack<T>() {
     push,
     pop,
     peek,
+    isEmpty,
   }
 }
 
@@ -39,8 +46,9 @@ export function stack<T>() {
 // myStack.push(25)
 // myStack.push(15)
 
-// console.log(myStack.storage)
 // myStack.pop()
+// myStack.pop()
+// myStack.pop()
+// console.log(myStack.isEmpty())
 
-// console.log(myStack.storage)
 // console.log(myStack.peek())

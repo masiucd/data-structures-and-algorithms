@@ -16,6 +16,7 @@ export function stack<T>() {
   /**
    * Removers from the top
    * The first item in the Stack
+   * LIFO Last In Last Out
    */
   const pop = () => {
     storage.pop()
@@ -39,16 +40,3 @@ export function stack<T>() {
     isEmpty,
   }
 }
-
-// const myStack = stack()
-
-// myStack.push(45)
-// myStack.push(25)
-// myStack.push(15)
-
-// myStack.pop()
-// myStack.pop()
-// myStack.pop()
-// console.log(myStack.isEmpty())
-
-// console.log(myStack.peek())

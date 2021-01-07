@@ -24,6 +24,7 @@ export function stackWithObj<T>() {
   /**
    * Removers from the top
    * The first item in the Stack
+   *  LIFO Last In Last Out
    */
   const pop = () => {
     if (storage.size === 0) {

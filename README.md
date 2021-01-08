@@ -14,7 +14,7 @@ Why are we using these techniques, do we really need them?
 
 - [Data structures](#ds)
   - [Array](#array)
-  - Linked lists
+  - [Linked lists](#ll)
   - Stacks
   - Queues
   - Graphs
@@ -94,6 +94,25 @@ While unshifting is `O(n)` linear time
 | | |
 
 While stings are immutable in Javascript working with strong in any problem solving task, like a coding interview, converting the string in to a array is very handy, with a lot of powerful array methods that we have in `javascript`, like `map` `reduce`,`filter` for example.
+
+### Linked Lists <a name = "ll"></a>
+
+Linked list is an linear data structure that holds data in objects so called nodes.
+These nodes holds the data to and a pointer that point to the next node.
+Linked lists are efficient when it comes to insert and delete different nodes.
+Both insertion and deletion takes us `O(1)` constant time.
+There is also a doubly linked lists that has a pointer to the previous node which can be handy.
+What we need to know if that it will take up more memory as we keep another reference to the previous node.
+If you come from languages like `C`,`Rust` ore `Java` you are used to that arrays has a fixed length and can not grow, you could see the linked list as dynamic arrays that can grow and is flexible.
+Linked Lists are often the underlying data structure for a stack or queue.
+
+**What is Linked lists good for?**
+| pros | cons |
+|--------------|--------------|
+| fast operation on the ends | costly lookups |
+| flexible size | |
+| | |
+| | |
 
 #### Extra
 

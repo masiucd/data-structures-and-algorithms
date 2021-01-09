@@ -1,5 +1,5 @@
-import * as s from "../stack/stack"
-import * as sObj from "../stack/stack-with-obj"
+import * as s from "../stack"
+import * as sObj from "../stack-with-obj"
 
 describe("stack", () => {
   test("stack with a array work as expected", () => {

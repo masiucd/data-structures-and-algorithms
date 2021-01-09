@@ -24,7 +24,7 @@ Why are we using these techniques, do we really need them?
   - searching
   - sorting
   - [recursion](#recursion)
-  - caching
+  - [caching](#caching)
   - [memoization](#memo)
 - Patterns
   - sliding window

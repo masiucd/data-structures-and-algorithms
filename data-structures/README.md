@@ -38,6 +38,13 @@ Data structure is just a way of gather and organize a collection of data.
 To really grab a better understanding of how complexity analysis and **data structures** works,
 we need to know what is memory how does it work and effect our daily job as a soft-ware engineer.
 
+as soon we declare a new variable we store some data on the memory. I like the visualize that we store some kind of value in a box and as soon we need to refer to our box,`variable` we open the box and out comes the stored value.
+
+```rust
+// in box x we store a value of 45 which is a signed 32-bit integer
+  let x:i32 = 45;
+```
+
 #### Key terms
 
 - **Bit**

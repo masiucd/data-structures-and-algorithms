@@ -102,3 +102,5 @@ as soon we declare a new variable we store some data on the memory. I like the v
     case of **32-bit** and **64-bit integers** ) is an elementary
     operation, which can be loosely treated as a single unit of operational
     work.
+
+<img src="./memory.svg" />

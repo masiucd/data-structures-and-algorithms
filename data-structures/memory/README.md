@@ -103,4 +103,14 @@ as soon we declare a new variable we store some data on the memory. I like the v
     operation, which can be loosely treated as a single unit of operational
     work.
 
+Here is a example how we can visualize the computer memory.
+each slot contains 8-bit,1 byte and can maximum contains up 256-bits in memory.
+so one row will contain `4 bytes`
+
 <img src="./memory.svg" />
+
+You can see how it would work to store for example a and array with the numbers `[1,2,3]` in our computer memory.
+
+<img src="./memory2.svg" />
+Here is the same picture the only difference is to show how we can use pointers to point on slot to another memory slot.
+So memory slot `2` points to memory address with slot `16`.

@@ -27,7 +27,7 @@ And the last one will have `O(n^2)` because we creating here a nested loop where
 The notation used to describe the `time complexity` adn `space complexity` of algorithms.
 
 Variables used in Big O notation denote the sizes of inputs to algorithms. For example, `Big(0)` might be the time complexity of an algorithm that traverses through an array of length.
-`O(n+m)` might be the time complexity of an algorithm that traverses through an array of length `n` and through an array of length `m`.
+`O(n+m)` might be the time complexity of an algorithm that traverses through an array of length `n` and through an array of length.
 
 The following are examples of common complexities and their Big O notations, ordered from fastest to slowest:
 

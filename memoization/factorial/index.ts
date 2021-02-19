@@ -1,5 +1,5 @@
 export const memoize = (fn: Function) => {
-  const cache = new Map()
+  const cache: Map<number, number> = new Map()
   return (n: number) => {
     if (cache.has(n)) {
       return cache[n]

@@ -9,7 +9,7 @@ log (x)=y if b^^y = x
    b
 ```
 
-In computer science we use the base 2 so you will not have to think when to calcualte the logarithm what base it should have. It will always have base 2 as the base.
+In computer science we use the base 2 so you will not have to think when to calculate the logarithm what base it should have. It will always have base 2 as the base.
 
 In plain English, if an algorithm has a logarithmic time complexity `O(log(n))` , where n is the size of the
 input, then whenever the algorithm's input doubles in size (i.e., whenever _n_ doubles), the number of operations needed to

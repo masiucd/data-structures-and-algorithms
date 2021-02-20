@@ -3,7 +3,12 @@ export function minimumWaitingTime(queries: number[]): number {
   let res = 0
   for (const [index, duration] of xs.entries()) {
     const queriesLeft = xs.length - (index + 1)
-
+    // [1,2,2,3,6]
+    // 4*1=1
+    // 2*3 = 6
+    // 2*2 = 4
+    // 1 * 3 = 3
+    // 0 * 0 = 0
     res += duration * queriesLeft
   }
 

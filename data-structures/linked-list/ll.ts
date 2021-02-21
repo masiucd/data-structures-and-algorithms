@@ -96,7 +96,7 @@ export function linkedList<T>(): LinkedList<T> {
 
   const dropHead = () => {
     if (!box.head) return false
-    let currentHead = box.head
+    const currentHead = box.head
     box.head = currentHead.next
     box.size--
     if (box.size === 0) {

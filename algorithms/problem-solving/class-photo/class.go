@@ -27,7 +27,7 @@ func ClassPhotos(redShirtHeights []int, blueShirtHeights []int) bool {
 	}
 
 	count:=0
-	for i := range back{
+	for i := range front {
 		if front[i] > back[i] {
 			count++
 		}

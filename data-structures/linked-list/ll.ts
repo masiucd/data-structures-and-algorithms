@@ -84,7 +84,7 @@ export function linkedList<T>(): LinkedList<T> {
   }
 
   const printNodes = () => {
-    let xs = []
+    const xs = []
     let currentNode = box.head
     while (currentNode) {
       xs.push(`${currentNode.data} ->`)

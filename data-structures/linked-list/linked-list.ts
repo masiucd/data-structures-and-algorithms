@@ -62,9 +62,9 @@ class List<T> {
     return this.size
   }
 
-  sort() {}
-  reverse() {}
-  removeDuplicates() {
+  // sort() {}
+  // reverse() {}
+  removeDuplicates(): this {
     // works only if sorted
     let current = this.head
     let nextNode = current?.next
@@ -78,6 +78,24 @@ class List<T> {
     }
 
     return this
+  }
+
+  getHead() {
+    if (!this.head) return null
+    return this.head.data
+  }
+
+  getNode(index: number) {
+    if (index < 0 && index > this.size) return null
+    if (index === 0) return this.getHead()
+    let current = this.head
+    let counter = 0
+    while (index !== counter) {
+      if (!current?.next) return null
+      current = current.next
+      counter++
+    }
+    return current?.data
   }
 }
 
@@ -93,9 +111,11 @@ l.push(99)
 l.push(100)
 l.push(100)
 l.push(100)
+l.prepend(17)
 
 console.log(l.printNodes())
 console.log(l.length)
 console.log(l.removeDuplicates())
 console.log(l.printNodes())
 console.log(l.length)
+console.log(l.getNode(0))

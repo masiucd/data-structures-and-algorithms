@@ -26,3 +26,16 @@ There are some really smart people out there that found a solution with really g
 ```
 
 <img src="./hash.svg" />
+
+`insertion`: O(1) average, O(n) worst case _(collisions)_
+`deletions`: O(1) average, O(n) worst case _(collisions)_
+`lookups`: O(1) average, O(n) worst case _(collisions)_
+
+The worst-case linear-time operations occur when a hash table experiences a
+lot of collisions, leading to long linked lists internally, which take O(n)
+time to traverse.
+
+However, in practice and especially in coding interviews, we typically assume
+that the hash functions employed by hash tables are so optimized that
+collisions are extremely rare and constant-time operations are all but
+guaranteed.

@@ -38,3 +38,21 @@ const f = (n: number): number => {
 
 const lol = f(5)
 console.log(lol)
+
+// const fib = (n: number) => {
+//   let current = 1
+//   let previous = 0
+
+//   while (n > 1) {
+//     const next = current + previous
+//     previous = current
+//     current = next
+//     n--
+//   }
+//   return current
+// }
+
+// const fibRec = (n: number): number => {
+
+//   return n < 1 ? 0 : n <= 2 ? 1 : fibRec(n - 1) + fibRec(n - 2)
+// }

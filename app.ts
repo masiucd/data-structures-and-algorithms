@@ -1,20 +1,20 @@
-const bubbleSort = (xs: number[]): number[] => {
-  let sorted = false
-  let counter = 0
-
-  while (!sorted) {
-    sorted = true
-    for (let i = 0; i < xs.length - 1 - counter; i++) {
-      if (xs[i] > xs[i + 1]) {
-        const temp = xs[i]
-        xs[i] = xs[i + 1]
-        xs[i + 1] = temp
-        sorted = false
-      }
+const swap = (i: number, j: number, xs: number[]) => {
+  [xs[i], xs[j]] = [xs[j], xs[i]];
+};
+const fn = (arr: number[]) => {
+  const xs = [...arr];
+  for (let i = 1; i < xs.length; i++) {
+    let j = i;
+    while (j > 0 && xs[j] < xs[j - 1]) {
+      swap(j, j - 1, xs);
+      j--;
+      // decrease j
     }
-    counter++
   }
-  return xs
-}
+  return xs;
+};
 
-console.log(bubbleSort([3, 4, 2, 1 - 2]))
+const xs = [3, 2, 1, 2, 6];
+let r = fn(xs);
+console.log(r);
+console.log(xs);

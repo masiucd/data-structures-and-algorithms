@@ -33,3 +33,12 @@ The bottom nodes, we call them leafs nodes.
 - `Leaf` - The node which does not have any child node is called the leaf node.
 - `Subtree` - Subtree represents the descendants of a node.
 - `Keys` - Key represents a value of a node based on which a search operation is to be carried out for a node.
+
+## Pseudo code for BST insert method
+
+1. Check if there is a root node, if not then `newNode` is our new root
+2. keep track if the root
+3. check if the value we insert is less then our root node
+4. if yes then traverse the left side
+5. if there is no current.left then current left is the new node, else keep traversing down the branch.
+6. else do the same thing on the right side

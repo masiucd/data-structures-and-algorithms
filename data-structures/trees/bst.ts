@@ -16,19 +16,20 @@ class Bst<T> {
   }
 
   insertNode(value: T): Bst<T> {
-    const newNode = new Node(value);
+    const node = new Node(value);
     if (!this.root) {
-      this.root = newNode;
+      this.root = node;
       return this;
     }
+
     let current = this.root;
     while (true) {
-      // check if number already exist
       if (value === current.value) return this;
       if (value < current.value) {
         // go left
         if (!current.left) {
-          current.left = newNode;
+          // if we hit the end of the edge
+          current.left = node;
           return this;
         } else {
           current = current.left;
@@ -36,7 +37,7 @@ class Bst<T> {
       } else if (value > current.value) {
         // go right
         if (!current.right) {
-          current.right = newNode;
+          current.right = node;
           return this;
         } else {
           current = current.right;
@@ -46,4 +47,7 @@ class Bst<T> {
   }
 }
 
-const bst = new Bst();
+// const bst = new Bst();
+// bst.insertNode(2);
+// bst.insertNode(1);
+// bst.insertNode(3);

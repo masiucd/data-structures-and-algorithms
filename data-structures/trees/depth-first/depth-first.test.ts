@@ -1,4 +1,4 @@
-import { assertNotEquals, assertEquals } from "../../../package.ts";
+import {  assertEquals } from "../../../package.ts";
 import { Node } from "./depth-first.ts";
 
 Deno.test({

@@ -33,7 +33,7 @@ const fn = (xs: number[], target: number) => {
 
   while (startIndex <= endIndex) {
     let middleIndex = Math.floor((startIndex + endIndex) / 2)
-    console.log(xs[middleIndex])
+
     if (target === xs[middleIndex]) {
       return middleIndex
     }

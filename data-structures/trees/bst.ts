@@ -1,7 +1,7 @@
-class Node<T> {
+class BstNode<T> {
   value: T;
-  left: null | Node<T>;
-  right: null | Node<T>;
+  left: null | BstNode<T>;
+  right: null | BstNode<T>;
   constructor(value: T) {
     this.value = value;
     this.left = null;
@@ -10,13 +10,13 @@ class Node<T> {
 }
 
 class Bst<T> {
-  root: null | Node<T>;
+  root: null | BstNode<T>;
   constructor() {
     this.root = null;
   }
 
   insertNode(value: T): Bst<T> {
-    const node = new Node(value);
+    const node = new BstNode(value);
     if (!this.root) {
       this.root = node;
       return this;
@@ -45,9 +45,27 @@ class Bst<T> {
       }
     }
   }
+
+  // similar to binary search
+  contains(value: T): boolean {
+    if (!this.root) return false;
+    if (this.root.value === value) return true;
+    let current: BstNode<T> = this.root;
+    while (current) {
+      if (value < current.value) {
+        current = current.left!;
+      } else if (value > current.value) {
+        current = current.right!;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
-// const bst = new Bst();
-// bst.insertNode(2);
-// bst.insertNode(1);
-// bst.insertNode(3);
+const bst = new Bst();
+
+bst.insertNode(2);
+bst.insertNode(1);
+bst.insertNode(3);

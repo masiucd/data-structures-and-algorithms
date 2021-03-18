@@ -33,7 +33,7 @@ func update(array []int, n int) {
 	}
 }
 
-func shift(array []int, n int, index int) {
+func shift(array []int, n, index int) {
 	for i := 0; i <= index; i++ {
 		if i == index {
 			array[i] = n

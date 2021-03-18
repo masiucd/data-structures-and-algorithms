@@ -1,6 +1,7 @@
 export function caesarCipherEncryptor(str: string, key: number) {
   const charsXs = [];
-  const newKey = key % 26;
+  const amountOfLettersInAlphabet = 26;
+  const newKey = key % amountOfLettersInAlphabet;
   for (const char of str) {
     charsXs.push(getNewLetter(char, newKey));
   }
@@ -21,6 +22,7 @@ const getNewLetter = (char: string, key: number) => {
 // charCode x = 120
 // charCode y = 121
 // charCode s = 115
+// charCode z = 122
 
 const backToChar = (charCode: number) => {
   return String.fromCharCode(charCode);
@@ -28,8 +30,8 @@ const backToChar = (charCode: number) => {
 
 export function caesarCipherEncryptor2(str: string, key: number) {
   const charsXs = [];
-  const newKey = key % 26;
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  const newKey = key % alphabet.length;
 
   for (const char of str) {
     charsXs.push(getNewLetter2(char, newKey, alphabet));
@@ -40,6 +42,8 @@ export function caesarCipherEncryptor2(str: string, key: number) {
 
 const getNewLetter2 = (char: string, key: number, alphabet: string[]) => {
   const newCharCode = alphabet.indexOf(char) + key;
+  // console.log(newCharCode, newCharCode % 26);
+  // console.log(1 % 3);
   return alphabet[newCharCode % 26];
 };
 

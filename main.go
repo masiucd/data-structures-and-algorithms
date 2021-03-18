@@ -1,18 +1,32 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
+func GenerateDocument(characters string, document string) bool {
+	mapCount := make(map[string]int)
 
+	for _, c := range characters {
+		_, ok := mapCount[string(c)]
+		if ok == true {
+			mapCount[string(c)]++
+		} else {
+			mapCount[string(c)] = 1
+		}
+	}
 
+	for _, c := range document {
+		_, ok := mapCount[string(c)]
+		if !ok {
+			return false
+		}
+		mapCount[string(c)]--
 
-func main()  {
-	fmt.Println("Starting")
-	// res:= Palindrome.palindrome("abcdcba")
-	// res := Palindrome.palindrome("sadada")
-	// fmt.Println(res)
-	// s := stack.Stack()
-	// fmt.Println(s.Peek())
-	
+	}
+
+	return true
+}
+
+func main() {
+
+	fmt.Println(GenerateDocument("abcabc", "aabbccc"))
 }

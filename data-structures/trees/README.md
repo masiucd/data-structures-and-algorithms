@@ -15,6 +15,9 @@ The `DOM` is a `tree` data structure with child nodes and edges.
 There are a lot different types of `trees` that we use as data structures, One of the most common is the `Binary search tree`(BST).
 
 Every path that starts from the root and ends ond of the bottom nodes is called a `branch`.
+A branch is when we have a path all the way down to the leaf.
+<img src="./branch2.svg">
+
 `Git` is a good mental model in this case.
 The bottom nodes, we call them leafs nodes.
 

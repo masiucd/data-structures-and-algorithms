@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 class Program {
 
   public boolean generateDocument(String characters, String document) {

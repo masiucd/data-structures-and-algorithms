@@ -1,4 +1,4 @@
-class BstNode<T> {
+export class BstNode<T> {
   value: T;
   left: null | BstNode<T>;
   right: null | BstNode<T>;
@@ -9,7 +9,7 @@ class BstNode<T> {
   }
 }
 
-class Bst<T> {
+export class Bst<T> {
   root: null | BstNode<T>;
   constructor() {
     this.root = null;

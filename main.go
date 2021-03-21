@@ -3,24 +3,18 @@ package main
 import "fmt"
 
 func GenerateDocument(characters string, document string) bool {
-	mapCount := make(map[string]int)
+	charCount := make(map[rune]int)
 
-	for _, c := range characters {
-		_, ok := mapCount[string(c)]
-		if ok == true {
-			mapCount[string(c)]++
-		} else {
-			mapCount[string(c)] = 1
-		}
+
+	for _, char := range characters{
+	charCount[char] = charCount[char]+1
 	}
 
-	for _, c := range document {
-		_, ok := mapCount[string(c)]
-		if !ok {
+	for _,char := range document {
+		if charCount[char] == 0{
 			return false
 		}
-		mapCount[string(c)]--
-
+		charCount[char] = charCount[char] -1
 	}
 
 	return true

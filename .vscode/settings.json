@@ -2,5 +2,8 @@
   "deno.enable": true,
   "deno.lint": true,
   "deno.unstable": true,
-  "go.inferGopath": false
+  "go.gotoSymbol.includeImports": true,
+  "go.lintOnSave": "file",
+  "go.lintTool": "golint",
+  "go.gopath": null
 }

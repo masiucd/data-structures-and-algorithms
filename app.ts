@@ -1,28 +1,20 @@
-export function caesarCipherEncryptor(str: string, key: number) {
-  const charsXs = [];
-  const newKey = key % 26;
-
-  for (const char of str) {
-    charsXs.push(getNewLetter(char, newKey));
+const generateDocument = (characters: string, document: string) => {
+  for (const char of document) {
+    const documentFrequency = countHandler(char, document);
+    const charFrequency = countHandler(char, characters);
+    if (documentFrequency > charFrequency) return false;
   }
-
-  return charsXs.join("");
-}
-
-const getNewLetter = (char: string, key: number) => {
-  // moving amount of places forward
-  // 122
-  // 96
-  const newCharCode = char.charCodeAt(0) + key;
-  console.log(newCharCode, backToChar(newCharCode));
-  return newCharCode <= 122 ? backToChar(newCharCode) : backToChar(96 + (newCharCode % 122));
+  return true;
 };
 
-const backToChar = (charCode: number) => {
-  return String.fromCharCode(charCode);
+const countHandler = (char: string, target: string) => {
+  let count = 0;
+  for (const x of target) {
+    if (char === x) {
+      count++;
+    }
+  }
+  return count;
 };
 
-console.log(caesarCipherEncryptor("xyz", 2)); // zab
-// charCode x = 120
-// charCode y = 121
-// charCode s = 115
+console.log(generateDocument("abcabc", "aabbccc"));

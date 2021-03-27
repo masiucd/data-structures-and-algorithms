@@ -60,20 +60,6 @@ export function tournamentWinner2(competitions: string[][], results: number[]) {
   return getLastElementInList(sortable)[0];
 }
 
-console.log(
-  tournamentWinner2(
-    [
-      ["Bulls", "Eagles"],
-      ["Bulls", "Bears"],
-      ["Bulls", "Monkeys"],
-      ["Eagles", "Bears"],
-      ["Eagles", "Monkeys"],
-      ["Bears", "Monkeys"],
-    ],
-    [1, 1, 1, 1, 1, 1],
-  ),
-);
-
 function sortObj(record: Record<string, number>) {
   return Object.entries(record)
     .sort(([, a], [, b]) => a - b)

@@ -8,8 +8,22 @@ Deno.test({
       ["C#", "Python"],
       ["Python", "HTML"],
     ];
-    const result = tournamentWinner(xs, [0, 0, 1]);
-    const expected = "Python";
+    let result = tournamentWinner(xs, [0, 0, 1]);
+    let expected = "Python";
+    assertEquals(result, expected);
+
+    result = tournamentWinner(
+      [
+        ["Bulls", "Eagles"],
+        ["Bulls", "Bears"],
+        ["Bulls", "Monkeys"],
+        ["Eagles", "Bears"],
+        ["Eagles", "Monkeys"],
+        ["Bears", "Monkeys"],
+      ],
+      [1, 1, 1, 1, 1, 1],
+    );
+    expected = "Bulls";
     assertEquals(result, expected);
   },
 });

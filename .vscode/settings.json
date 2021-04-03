@@ -5,5 +5,6 @@
   "go.gotoSymbol.includeImports": true,
   "go.lintOnSave": "file",
   "go.lintTool": "golint",
-  "go.gopath": null
+  "go.gopath": null,
+  "java.format.settings.url": "eclipse-formatter.xml"
 }

@@ -1,26 +1,39 @@
 package main
 
-import "fmt"
+import "strings"
 
-func GenerateDocument(characters string, document string) bool {
-	charCount := make(map[rune]int)
-
-
-	for _, char := range characters{
-	charCount[char] = charCount[char]+1
+func reverse(xs []string) {
+	start, end := 0, len(xs)-1
+	for start < end {
+		temp := xs[start]
+		xs[start] = xs[end]
+		xs[end] = temp
+		start++
+		end--
 	}
-
-	for _,char := range document {
-		if charCount[char] == 0{
-			return false
-		}
-		charCount[char] = charCount[char] -1
-	}
-
-	return true
 }
 
-func main() {
+func split(s string) []string {
+	xs := make([]string, 0)
+	startOfWord := 0
 
-	fmt.Println(GenerateDocument("abcabc", "aabbccc"))
+	for index, char := range s {
+		if char == ' ' {
+			xs = append(xs, s[startOfWord:index])
+			startOfWord = index
+		} else if s[startOfWord] == ' ' {
+			xs = append(xs, " ")
+			startOfWord = index
+		}
+	}
+
+	xs = append(xs, s[startOfWord:])
+	return xs
+}
+
+func ReverseWordsInString(str string) string {
+	res := split(str)
+	reverse(res)
+
+	return strings.Join(res, "")
 }

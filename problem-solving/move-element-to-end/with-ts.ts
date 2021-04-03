@@ -31,5 +31,5 @@ function swap(i: number, j: number, array: number[]) {
   [array[i], array[j]] = [array[j], array[i]];
 }
 
-const xs = [2, 1, 2, 2, 2, 3, 4, 2];
-console.log(moveElementToEnd(xs, 2));
+// const xs = [2, 1, 2, 2, 2, 3, 4, 2];
+// console.log(moveElementToEnd(xs, 2));

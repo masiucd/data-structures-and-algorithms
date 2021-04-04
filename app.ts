@@ -1,35 +1,33 @@
-// Not an pure function
-const arrayMoveMutate = <T>(xs: T[], from: number, to: number) => {
-  const startIndex = from < 0 ? xs.length + from : from;
+export function smallestDifference(arrayOne: number[], arrayTwo: number[]) {
+  arrayOne.sort((a, b) => a - b);
+  arrayTwo.sort((a, b) => a - b);
+  let pointerA = 0;
+  let pointerB = 0;
+  let current = Infinity;
+  let smallest = Infinity;
+  let smallestPair: Array<number> = [];
 
-  if (startIndex >= 0 && startIndex < xs.length) {
-    const endIndex = to < 0 ? xs.length + to : to;
-    const [x] = xs.splice(from, 1);
-    xs.splice(endIndex, 0, x);
+  while (pointerA < arrayOne.length && pointerB < arrayTwo.length) {
+    const numForA = arrayOne[pointerA];
+    const numForB = arrayTwo[pointerB];
+    if (numForA < numForB) {
+      current = Math.abs(numForB - numForA);
+      pointerA++;
+    } else if (numForB < numForA) {
+      current = Math.abs(numForA - numForB);
+      pointerB++;
+    } else {
+      return [numForA, numForB];
+    }
+    if (smallest > current) {
+      smallest = current;
+      smallestPair = [numForA, numForB];
+    }
   }
-};
-// pure version
-const arrayMove = <T>(xs: T[], from: number, to: number) => {
-  const list = [...xs];
-  arrayMoveMutate(xs, from, to);
-  return list;
-};
-
-export function moveElementToEnd(array: number[], toMove: number) {
-  let start = 0;
-  let end = array.length - 1;
-  while (start < end) {
-    while (start < end && array[end] === toMove) end--;
-    if (array[start] === toMove) swap(start, end, array);
-    start++;
-  }
-
-  return array;
+  return smallestPair;
 }
 
-function swap(i: number, j: number, array: number[]) {
-  [array[i], array[j]] = [array[j], array[i]];
-}
+// const list1 = [-1, 5, 10, 20, 28, 3]; // [-1, 3, 5, 10, 20, 28,];
+// const list2 = [26, 134, 135, 15, 17]; // [15,17,26,134,135]
 
-const xs = [2, 1, 2, 2, 2, 3, 4, 2];
-console.log(moveElementToEnd(xs, 2));
+// console.log(smallestDifference(list1, list2));

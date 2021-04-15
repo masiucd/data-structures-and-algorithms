@@ -11,7 +11,6 @@ public class WithJava {
     int current = Integer.MAX_VALUE;
     int smallest = Integer.MAX_VALUE;
     int[] smallestPair = new int[2];
-    ;
     int pointerA = 0;
     int pointerB = 0;
 

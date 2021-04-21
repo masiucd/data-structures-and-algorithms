@@ -1,5 +1,5 @@
 import { tournamentWinner } from "./with-ts.ts";
-import { assertEquals } from "../../../package.ts";
+import { assertEquals } from "../../package.ts";
 Deno.test({
   name: "tournamanet",
   fn: () => {
@@ -21,7 +21,7 @@ Deno.test({
         ["Eagles", "Monkeys"],
         ["Bears", "Monkeys"],
       ],
-      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1]
     );
     expected = "Bulls";
     assertEquals(result, expected);

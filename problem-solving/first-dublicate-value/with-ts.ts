@@ -15,7 +15,7 @@ export function firstDuplicateValueX(list: number[]) {
   return minCurrentIndex === list.length ? -1 : list[minCurrentIndex];
 }
 
-export const firstDuplicateValue = (list: number[]) => {
+export const firstDuplicateValueXX = (list: number[]) => {
   const nonSeenNumbers = new Map<number, boolean>();
 
   for (const num of list) {
@@ -27,7 +27,16 @@ export const firstDuplicateValue = (list: number[]) => {
   return -1;
 };
 
-let list = [1, 2, 3, 2];
-list = [2, 1, 5, 2, 3, 3, 4];
-list = [2, 1, 5, 3, 2, 2, 4];
-console.log(firstDuplicateValue(list));
+export const firstDuplicateValue = (list: number[]) => {
+  for (const num of list) {
+    const absoluteValue = Math.abs(num);
+    if (list[absoluteValue - 1] < 0) return absoluteValue;
+    list[absoluteValue - 1] *= -1;
+  }
+  return -1;
+};
+
+// let list = [1, 2, 3, 2];
+// list = [2, 1, 5, 2, 3, 3, 4];
+// list = [2, 1, 5, 3, 2, 2, 4];
+// console.log(firstDuplicateValue(list));

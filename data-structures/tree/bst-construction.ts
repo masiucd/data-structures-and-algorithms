@@ -10,22 +10,18 @@ export class BST {
   }
 
   insert(value: number): BST {
-    // if value is less then root value then go left else go right
     if (value < this.value) {
-      // go left
+      // if we hit the edge there is no more nodes
       if (this.left === null) {
         this.left = new BST(value)
       } else {
         this.left.insert(value)
       }
     } else {
-      if (value > this.value) {
-        // go right
-        if (this.right === null) {
-          this.right = new BST(value)
-        } else {
-          this.right.insert(value)
-        }
+      if (this.right === null) {
+        this.right = new BST(value)
+      } else {
+        this.right.insert(value)
       }
     }
     return this
@@ -36,19 +32,47 @@ export class BST {
       if (this.left === null) {
         return false
       } else {
-        return this.left?.contains(value)
+        return this.left.contains(value)
       }
     } else if (value > this.value) {
       if (this.right === null) {
         return false
       } else {
-        this.right.contains(value)
+        return this.right.contains(value)
       }
     }
-    return false
+    return true
   }
 
   remove(value: number, parent: BST | null = null): BST {
+    if (value < this.value) {
+      if (this.left !== null) {
+        this.left.remove(value, this)
+      }
+    } else if (value > this.value) {
+      if (this.right !== null) {
+        this.right.remove(value, this)
+      }
+    } else {
+      if (this.left !== null && this.right !== null) {
+        this.value = this.right.getMinValue()
+        this.right.remove(this.value, this)
+      } else if (parent === null) {
+        if (this.left !== null) {
+          this.value = this.left.value
+          this.right = this.left?.right
+          this.left = this.left.left
+        } else if (this.right !== null) {
+          this.value = this.right.value
+          this.left = this.right.left
+          this.right = this.right.right
+        }
+      } else if (parent.left === this) {
+        parent.left = this.left !== null ? this.left : this.right
+      } else if (parent.right === this) {
+        parent.right = this.left !== null ? this.left : this.right
+      }
+    }
     return this
   }
 
@@ -60,3 +84,11 @@ export class BST {
     }
   }
 }
+
+const f = new BST(2)
+f.insert(3)
+f.insert(11)
+f.insert(5)
+// f.remove(5)
+console.log(f)
+console.log(f.contains(5))

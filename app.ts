@@ -1,33 +1,55 @@
-export function smallestDifference(arrayOne: number[], arrayTwo: number[]) {
-  arrayOne.sort((a, b) => a - b);
-  arrayTwo.sort((a, b) => a - b);
-  let pointerA = 0;
-  let pointerB = 0;
-  let current = Infinity;
-  let smallest = Infinity;
-  let smallestPair: Array<number> = [];
-
-  while (pointerA < arrayOne.length && pointerB < arrayTwo.length) {
-    const numForA = arrayOne[pointerA];
-    const numForB = arrayTwo[pointerB];
-    if (numForA < numForB) {
-      current = Math.abs(numForB - numForA);
-      pointerA++;
-    } else if (numForB < numForA) {
-      current = Math.abs(numForA - numForB);
-      pointerB++;
-    } else {
-      return [numForA, numForB];
-    }
-    if (smallest > current) {
-      smallest = current;
-      smallestPair = [numForA, numForB];
-    }
+class BstNode {
+  value: number
+  left: null | BstNode
+  right: null | BstNode
+  constructor(value: number) {
+    this.value = value
+    this.left = null
+    this.right = null
   }
-  return smallestPair;
 }
 
-// const list1 = [-1, 5, 10, 20, 28, 3]; // [-1, 3, 5, 10, 20, 28,];
-// const list2 = [26, 134, 135, 15, 17]; // [15,17,26,134,135]
+class Bst {
+  root: BstNode | null
+  constructor() {
+    this.root = null
+  }
 
-// console.log(smallestDifference(list1, list2));
+  insert(value: number) {
+    const node = new BstNode(value)
+    if (!this.root) {
+      this.root = node
+      return this
+    }
+
+    let current = this.root
+    while (true) {
+      if (value === current.value) return this
+      if (value < current.value) {
+        // go left
+        if (!current.left) {
+          // if we hit the end of the edge
+          current.left = node
+          return this
+        } else {
+          current = current.left
+        }
+      } else if (value > current.value) {
+        // go right
+        if (!current.right) {
+          current.right = node
+          return this
+        } else {
+          current = current.right
+        }
+      }
+    }
+  }
+  contains(value: number) {}
+}
+
+const bbb = new Bst()
+bbb.insert(12)
+bbb.insert(2)
+bbb.insert(99)
+console.log(bbb)

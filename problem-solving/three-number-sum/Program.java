@@ -22,8 +22,8 @@ public class Program {
         if (currentSum == targetSum) {
           Integer[] newTriplet = { array[i], array[left], array[right] };
           result.add(newTriplet);
-          right++;
-          left--;
+          right--;
+          left++;
         } else if (currentSum < targetSum) {
           left++;
         } else if (currentSum > targetSum) {

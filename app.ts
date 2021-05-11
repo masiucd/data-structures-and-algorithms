@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class BSTNode {
   value: number
   right: BSTNode | null
@@ -21,21 +22,61 @@ class BST {
       this.size++
       return this
     }
+=======
+class BstNode {
+  value: number
+  left: null | BstNode
+  right: null | BstNode
+  constructor(value: number) {
+    this.value = value
+    this.left = null
+    this.right = null
+  }
+}
+
+class Bst {
+  root: BstNode | null
+  constructor() {
+    this.root = null
+  }
+
+  insert(value: number) {
+    const node = new BstNode(value)
+    if (!this.root) {
+      this.root = node
+      return this
+    }
+
+>>>>>>> e6ac7722d09f37ffc3edfe9dce05000cb286d3be
     let current = this.root
     while (true) {
       if (value === current.value) return this
       if (value < current.value) {
+<<<<<<< HEAD
         if (!current.left) {
           current.left = new BSTNode(value)
           this.size++
+=======
+        // go left
+        if (!current.left) {
+          // if we hit the end of the edge
+          current.left = node
+>>>>>>> e6ac7722d09f37ffc3edfe9dce05000cb286d3be
           return this
         } else {
           current = current.left
         }
+<<<<<<< HEAD
       } else {
         if (!current.right) {
           current.right = new BSTNode(value)
           this.size++
+=======
+      } else if (value > current.value) {
+        // go right
+        if (!current.right) {
+          current.right = node
+>>>>>>> e6ac7722d09f37ffc3edfe9dce05000cb286d3be
           return this
         } else {
           current = current.right
@@ -43,6 +84,7 @@ class BST {
       }
     }
   }
+<<<<<<< HEAD
   contains(value: number) {
     if (!this.root) return false
     let current = this.root
@@ -71,3 +113,13 @@ b.insert(12)
 b.insert(100)
 let f = b.contains(5)
 console.log(b, f)
+=======
+  contains(value: number) {}
+}
+
+const bbb = new Bst()
+bbb.insert(12)
+bbb.insert(2)
+bbb.insert(99)
+console.log(bbb)
+>>>>>>> e6ac7722d09f37ffc3edfe9dce05000cb286d3be

@@ -1,33 +1,73 @@
-export function smallestDifference(arrayOne: number[], arrayTwo: number[]) {
-  arrayOne.sort((a, b) => a - b);
-  arrayTwo.sort((a, b) => a - b);
-  let pointerA = 0;
-  let pointerB = 0;
-  let current = Infinity;
-  let smallest = Infinity;
-  let smallestPair: Array<number> = [];
-
-  while (pointerA < arrayOne.length && pointerB < arrayTwo.length) {
-    const numForA = arrayOne[pointerA];
-    const numForB = arrayTwo[pointerB];
-    if (numForA < numForB) {
-      current = Math.abs(numForB - numForA);
-      pointerA++;
-    } else if (numForB < numForA) {
-      current = Math.abs(numForA - numForB);
-      pointerB++;
-    } else {
-      return [numForA, numForB];
+class BSTNode {
+  value: number
+  right: BSTNode | null
+  left: BSTNode | null
+  constructor(value: number) {
+    this.value = value
+    this.right = null
+    this.left = null
+  }
+}
+class BST {
+  root: null | BSTNode
+  private size: number
+  constructor() {
+    this.root = null
+    this.size = 0
+  }
+  insert(value: number) {
+    if (!this.root) {
+      this.root = new BSTNode(value)
+      this.size++
+      return this
     }
-    if (smallest > current) {
-      smallest = current;
-      smallestPair = [numForA, numForB];
+    let current = this.root
+    while (true) {
+      if (value === current.value) return this
+      if (value < current.value) {
+        if (!current.left) {
+          current.left = new BSTNode(value)
+          this.size++
+          return this
+        } else {
+          current = current.left
+        }
+      } else {
+        if (!current.right) {
+          current.right = new BSTNode(value)
+          this.size++
+          return this
+        } else {
+          current = current.right
+        }
+      }
     }
   }
-  return smallestPair;
+  contains(value: number) {
+    if (!this.root) return false
+    let current = this.root
+    if (value === current.value) return current
+    while (current) {
+      if (value < current.value) {
+        current = current.left!
+      } else if (value > current.value) {
+        current = current.right!
+      } else {
+        return true
+      }
+    }
+    return false
+  }
+
+  get amount(): number {
+    return this.amount
+  }
 }
 
-// const list1 = [-1, 5, 10, 20, 28, 3]; // [-1, 3, 5, 10, 20, 28,];
-// const list2 = [26, 134, 135, 15, 17]; // [15,17,26,134,135]
-
-// console.log(smallestDifference(list1, list2));
+const b = new BST()
+b.insert(10)
+b.insert(5)
+b.insert(12)
+b.insert(100)
+let f = b.contains(5)
+console.log(b, f)

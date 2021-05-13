@@ -14,9 +14,35 @@ export function groupAnagrams(words: string[]) {
   return Object.values(anagrams)
 }
 
-const words = ["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]
+// with A Javascript Map
+function groupAnagrams2(words: string[]) {
+  const store = new Map<string, string[]>()
 
-console.log(groupAnagrams(words))
+  for (const word of words) {
+    const sortedWord = word
+      .split("")
+      .sort((a, b) => (a > b ? 1 : -1))
+      .join("")
+
+    if (!store.has(sortedWord)) {
+      store.set(sortedWord, [word])
+    } else {
+      const list = store.get(sortedWord)?.concat(word) as string[]
+      store.set(sortedWord, list)
+    }
+  }
+  const finalResult: string[][] = []
+
+  for (const [_, value] of store) {
+    finalResult.push(value)
+  }
+
+  return finalResult
+}
+
+// const words = ["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]
+
+// console.log(groupAnagrams(words))
 
 function isAnagram(word1: string, word2: string): boolean {
   const map: Record<string, number> = {}

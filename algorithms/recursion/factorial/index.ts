@@ -1,17 +1,18 @@
-const memoize = (fn: Function) => {
-  const cache = {}
+const memoize = (fn: (n: number) => number) => {
+  const cache: Record<string, number> = {}
   return (n: number) => {
     if (cache[n]) {
+      console.log("have it")
       return cache[n]
     } else {
-      let res = fn(n)
+      const res = fn(n)
       cache[n] = res
       return res
     }
   }
 }
 
-const factorial = (n: number) => {
+const factorial = (n: number): number => {
   if (n <= 2) {
     return n
   }
@@ -19,5 +20,3 @@ const factorial = (n: number) => {
 }
 
 const f = memoize(factorial)
-
-console.log(f(5))

@@ -9,7 +9,8 @@
   "java.format.settings.url": "eclipse-formatter.xml",
   "java.project.sourcePaths": [
     "problem-solving/three-number-sum",
+    "problem-solving/sunset-views",
     "problem-solving/first-non-repeating-char",
-    "problem-solving/sunset-views"
+    "algorithms/recursion/reverse-string"
   ]
 }

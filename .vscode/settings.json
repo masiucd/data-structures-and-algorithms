@@ -8,7 +8,8 @@
   "go.gopath": null,
   "java.format.settings.url": "eclipse-formatter.xml",
   "java.project.sourcePaths": [
+    "problem-solving/three-number-sum",
     "problem-solving/first-non-repeating-char",
-    "problem-solving/three-number-sum"
+    "problem-solving/sunset-views"
   ]
 }

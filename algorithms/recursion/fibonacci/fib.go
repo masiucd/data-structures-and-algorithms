@@ -24,6 +24,5 @@ func memoize(n int, fn func(n int) int) int {
 
 func main() {
 	res := memoize(5, fib)
-
 	fmt.Println(res)
 }

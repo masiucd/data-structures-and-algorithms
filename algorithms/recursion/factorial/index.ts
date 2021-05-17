@@ -1,17 +1,19 @@
-const memoize = (fn: Function) => {
-  const cache = {}
+// 5*4*3*2
+type FacFn = (n: number) => number
+const memoize = (fn: FacFn) => {
+  const cache: Record<string, number> = {}
   return (n: number) => {
     if (cache[n]) {
       return cache[n]
     } else {
-      let res = fn(n)
+      const res = fn(n)
       cache[n] = res
       return res
     }
   }
 }
 
-const factorial = (n: number) => {
+const factorial = (n: number): number => {
   if (n <= 2) {
     return n
   }

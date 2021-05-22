@@ -1,87 +1,78 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
-func phoneNumberMnemonics(phoneNumber string) []string {
-	mnemonics := make([]byte, len(phoneNumber))
-	fill(&mnemonics, '0')
-	res := make([]string, 0)
+// MinMax struct
+type MinMax struct {
+	min int
+	max int
+}
 
-	pickLetter(0, phoneNumber, mnemonics, &res)
+// MinMaxStack struct
+type MinMaxStack struct {
+	minMax []MinMax
+	stack  []int
+}
 
-	return res
+func createStack() *MinMaxStack {
+	return &MinMaxStack{}
+}
+
+func pop(xs *[]int) {
+	size := len(*xs)
+	*xs = (*xs)[:size-1]
+}
+
+func (stack *MinMaxStack) push(n int) {
+	newMinMax := MinMax{min: n, max: n}
+	if len(stack.minMax) > 0 {
+		lastMinMax := stack.minMax[len(stack.minMax)-1]
+		lastMinMax.min = min(lastMinMax.min, n)
+		lastMinMax.max = max(lastMinMax.max, n)
+	}
+	stack.minMax = append(stack.minMax, newMinMax)
+	stack.stack = append(stack.stack, n)
+}
+
+func (stack *MinMaxStack) pop() int {
+	stack.minMax = stack.minMax[:len(stack.minMax)-1]
+	out := stack.stack[len(stack.stack)-1]
+	stack.stack = stack.stack[:len(stack.stack)-1]
+	return out
+}
+
+func (stack *MinMaxStack) getMax() int {
+	return stack.minMax[len(stack.minMax)].min
+}
+func (stack *MinMaxStack) getMin() int {
+	return stack.minMax[len(stack.minMax)].max
 }
 
 func main() {
-	r := phoneNumberMnemonics("1205")
-	fmt.Println(r)
+
+	xs := []int{}
+	fillSlice(&xs, 0, 20)
+
+	pop(&xs)
+	fmt.Println(xs)
+
 }
 
-var digitMap = map[byte][]byte{
-	'0': {'0'},
-	'1': {'1'},
-	'2': {'a', 'b', 'c'},
-	'3': {'d', 'e', 'f'},
-	'4': {'g', 'h', 'i'},
-	'5': {'j', 'k', 'l'},
-	'6': {'m', 'n', 'o'},
-	'7': {'p', 'q', 'r', 's'},
-	'8': {'t', 'u', 'v'},
-	'9': {'w', 'x', 'y', 'z'},
+func min(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+func max(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
 }
 
-func fill(b *[]byte, byteToFillWith byte) {
-	for i := range *b {
-		(*b)[i] = byteToFillWith
+func fillSlice(xs *[]int, from, to int) {
+	for i := from; i <= to; i++ {
+		*xs = append(*xs, i)
 	}
-}
-
-func pickLetter(index int, phoneNumber string, mnemonics []byte, res *[]string) {
-	if index == len(phoneNumber) {
-		mnemonic := string(mnemonics)
-		*res = append(*res, mnemonic)
-	} else {
-		number := phoneNumber[index]
-		letters := digitMap[number]
-
-		for _, letter := range letters {
-			mnemonics[index] = letter
-			pickLetter(index+1, phoneNumber, mnemonics, res)
-		}
-	}
-}
-
-func sunsetViews(buildings []int, direction string) []int {
-	stack := make([]int, 0)
-	startIndex := len(buildings) - 1
-	step := -1
-
-	if direction == "EAST" {
-		startIndex = 0
-		step = 1
-	}
-
-	idx := startIndex
-	for idx >= 0 && idx < len(buildings) {
-		currentBuildingHeight := buildings[idx]
-		// lastElementOnStack := buildings[stack[len(stack)-1]]
-
-		// if the top value of the stack is less then current height we are on now, then remove it from the stack
-		for len(stack) > 0 && buildings[stack[len(stack)-1]] <= currentBuildingHeight {
-			stack = stack[:len(stack)-1]
-		}
-
-		stack = append(stack, idx)
-		idx += step
-
-	}
-
-	if direction == "WEST" {
-		sort.Ints(stack)
-	}
-
-	return stack
 }

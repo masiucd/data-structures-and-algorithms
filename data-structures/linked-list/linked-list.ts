@@ -1,121 +1,115 @@
-class NodeC<T> {
-  data: T | null
-  next: NodeC<T> | null
-
-  constructor(data: T | null) {
+class Node {
+  data: number
+  next: Node | null
+  constructor(data: number) {
     this.data = data
     this.next = null
   }
 }
 
-class List<T> {
-  head: NodeC<T> | null
-  tail: NodeC<T> | null
-  size: number
+class LinkedList {
+  head: Node | null
+  tail: Node | null
+  #size: number
   constructor() {
     this.head = null
     this.tail = null
-    this.size = 0
-  }
-  createNode(data: T): NodeC<T> {
-    return new NodeC<T>(data)
+    this.#size = 0
   }
 
-  push(data: T): this {
-    const newNode = this.createNode(data)
+  getSize(): number {
+    return this.#size
+  }
+  incrementSize(): void {
+    this.#size++
+  }
+
+  /**
+   *
+   * @desc insert at the beginning
+   */
+  prepend(data: number): LinkedList {
     if (!this.head) {
-      this.head = newNode
+      this.head = new Node(data)
       this.tail = this.head
-    } else {
-      if (!this.tail) return this
-      this.tail.next = newNode
-      this.tail = newNode
+      this.incrementSize()
+      return this
     }
-
-    this.size++
-    return this
-  }
-
-  prepend(data: T): this {
-    const newNode = this.createNode(data)
-    if (!this.head) {
-      this.head = newNode
-      this.tail = this.head
-    }
+    const newNode = new Node(data)
     newNode.next = this.head
     this.head = newNode
-    this.size++
+    this.incrementSize()
     return this
   }
 
-  printNodes(): T[] {
-    const xs: T[] = []
-    let current = this.head
-    while (current) {
-      xs.push(current.data!)
-      current = current.next
+  /**
+   *
+   * @desc push to the end of the list
+   */
+  append(data: number): LinkedList {
+    if (!this.tail) {
+      this.head = new Node(data)
+      this.tail = this.head
+      this.incrementSize()
+      return this
     }
-    return xs
-  }
-
-  get length() {
-    return this.size
-  }
-
-  // sort() {}
-  // reverse() {}
-  removeDuplicates(): this {
-    // works only if sorted
-    let current = this.head
-    let nextNode = current?.next
-    while (current) {
-      if (current.data === nextNode?.data) {
-        current.next = nextNode.next?.next!
-        this.size--
-      }
-      current = current.next
-      nextNode = current?.next
-    }
-
+    const newNode = new Node(data)
+    this.tail.next = newNode
+    this.tail = newNode
+    this.incrementSize()
     return this
   }
 
   getHead() {
-    if (!this.head) return null
-    return this.head.data
+    return this.head
   }
 
   getNode(index: number) {
-    if (index < 0 && index > this.size) return null
+    if (index < 0 || index > this.getSize()) return null
     if (index === 0) return this.getHead()
+    if (index === this.getSize()) return this.tail
+    let tracker = 0
     let current = this.head
-    let counter = 0
-    while (index !== counter) {
-      if (!current?.next) return null
+    while (current !== null) {
+      if (tracker === index) return current
       current = current.next
-      counter++
+      tracker++
     }
-    return current?.data
+    return null
+  }
+
+  printNodes(): void {
+    const nodes: string[] = []
+    let current = this.head
+    let tracker = 0
+    while (current !== null) {
+      tracker++
+      const v = tracker < this.getSize() ? `${current.data} =>` : `${current.data}`
+      nodes.push(v)
+      current = current.next
+    }
+    console.log(nodes)
+  }
+  sumNodes(): number {
+    let sum = 0
+    let current = this.head
+    while (current !== null) {
+      sum += current.data
+      current = current.next
+    }
+    return sum
   }
 }
 
-const l = new List()
-l.push(0)
-l.push(2)
-l.push(2)
-l.push(23)
-l.push(23)
-l.push(23)
-l.push(99)
-l.push(99)
-l.push(100)
-l.push(100)
-l.push(100)
-l.prepend(17)
-
-console.log(l.printNodes())
-console.log(l.length)
-console.log(l.removeDuplicates())
-console.log(l.printNodes())
-console.log(l.length)
-console.log(l.getNode(0))
+const ll = new LinkedList()
+ll.prepend(4)
+ll.prepend(1)
+ll.prepend(100)
+ll.prepend(20)
+ll.append(24)
+ll.append(125)
+ll.append(2)
+console.log(ll.printNodes())
+console.log(ll.sumNodes())
+console.log(ll.getSize())
+console.log(ll.getNode(7))

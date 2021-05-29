@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // Node struct
 type Node struct {
 	data int
@@ -42,7 +40,6 @@ func main() {
 	// ll.prepend(1)
 	// fmt.Println(ll)
 
-	xs := []int{1, 2, 3, 4, 5}
-	last := xs[len(xs)-1]
-	fmt.Println(last)
+	// xs := []int{1, 2, 3, 4, 5}
+
 }

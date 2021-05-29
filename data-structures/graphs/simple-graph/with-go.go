@@ -54,21 +54,6 @@ func (g *Graph) addEdge(key1 string, key2 string) {
 	}
 }
 
-func (g *Graph) print() []string {
-	res := []string{}
-	for _, n := range g.nodes {
-		var result string = n.key
-		if len(n.children) > 0 {
-			for _, child := range n.children {
-				result += fmt.Sprintf(" => %s", child.key)
-				res = append(res, result)
-			}
-
-		}
-	}
-	return res
-}
-
 func createGraph(directed bool) Graph {
 	return Graph{
 		nodes:      []*Node{},
@@ -85,5 +70,5 @@ func main() {
 	g.addNode("d")
 	g.addEdge("a", "b")
 	g.addEdge("b", "c")
-	fmt.Println(g.print())
+	fmt.Println(g)
 }

@@ -1,3 +1,22 @@
+// if no next greater element then -1
+function nextGreaterElement(array: number[]) {
+  const res: number[] = new Array(array.length).fill(-1)
+  const stack: number[] = []
+  for (let i = 0; i < 2 * array.length; i++) {
+    console.log(res, stack)
+    const circularIndex = i % array.length
+    while (stack.length > 0 && array[stack[stack.length - 1]] < array[circularIndex]) {
+      const top = stack.pop() as number
+      res[top] = array[circularIndex]
+    }
+    stack.push(circularIndex)
+  }
+  return res
+}
+
+// const r = [2, 5, -3, -4, 6, 7, 2] // [5,6,6,6,7,-1,5]
+console.log(nextGreaterElement([1, 2, 3])) // [2,3,-1]
+
 // class Node {
 //   data: number
 //   next: Node | null

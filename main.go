@@ -1,43 +1,48 @@
 package main
 
-import (
-	"math"
-)
+import "fmt"
 
-// MinNumberOfCoinsForChange func
-func MinNumberOfCoinsForChange(n int, denoms []int) int {
-	numOfCoins := makeNomOfCoins(n)
-	numOfCoins[0] = 0
-
-	for _, denom := range denoms {
-		for i := 0; i < len(numOfCoins); i++ {
-			if denom <= i {
-				numOfCoins[i] = min(numOfCoins[i], numOfCoins[i-denom]+1)
-			}
-		}
-	}
-
-	if numOfCoins[n] != math.MaxInt32 {
-		return numOfCoins[n]
-	}
-	return -1
+// Node struct
+type Node struct {
+	data int
+	next *Node
 }
 
-func makeNomOfCoins(n int) []int {
-	numOfCoins := make([]int, n+1)
-
-	for i := range numOfCoins {
-		numOfCoins[i] = math.MaxInt32
-	}
-	return numOfCoins
+// List struct
+type List struct {
+	head *Node
+	tail *Node
+	size int
 }
 
-func min(a int, rest ...int) int {
-	current := a
-	for _, n := range rest {
-		if n < current {
-			current = n
-		}
+func newList() *List {
+	return &List{}
+}
+
+func (ll *List) prepend(data int) {
+	newNode := &Node{data, nil}
+	if ll.head == nil {
+		ll.head = newNode
+		ll.tail = ll.head
+		ll.size++
+		return
 	}
-	return current
+
+	newNode.next = ll.head
+	ll.head = newNode
+	ll.size++
+	return
+}
+
+func main() {
+	// ll := newList()
+
+	// ll.prepend(5)
+	// ll.prepend(2)
+	// ll.prepend(1)
+	// fmt.Println(ll)
+
+	xs := []int{1, 2, 3, 4, 5}
+	last := xs[len(xs)-1]
+	fmt.Println(last)
 }

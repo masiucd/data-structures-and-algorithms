@@ -50,7 +50,7 @@ function createGraph(directed = false) {
       return nodes.map(({ key, children }) => {
         let result = key
         if (hasChildren(children)) {
-          result += `${children.map(c => `${c.key}`).join(" ")}`
+          result += `${children.map(c => ` ${c.key} `).join(" ")}`
         }
         return result
       })
@@ -58,15 +58,15 @@ function createGraph(directed = false) {
   }
 }
 
-// const g = createGraph(true) // directed
+const g = createGraph(true) // directed
 
-// g.addNode("Marcell")
-// g.addNode("Filip")
-// g.addNode("Jurek")
-// g.addNode("Barbara")
+g.addNode("Marcell")
+g.addNode("Filip")
+g.addNode("Jurek")
+g.addNode("Barbara")
 
-// g.addEdge("Marcell", "Barbara")
-// g.addEdge("Filip", "Jurek")
-// g.addEdge("Barbara", "Jurek")
-// g.addEdge("Jurek", "Marcell")
+g.createEdge("Marcell", "Barbara")
+g.createEdge("Filip", "Jurek")
+g.createEdge("Barbara", "Jurek")
+g.createEdge("Jurek", "Marcell")
 // console.log(g.print())

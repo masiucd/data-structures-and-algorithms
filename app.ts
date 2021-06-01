@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Node {
   value: number
   next: Node | null
@@ -80,3 +81,5 @@ ll.prepend(24)
 console.log(ll)
 console.log(ll.getSize())
 console.log(ll.printNodes())
+=======
+>>>>>>> 11108822c58e1bb2b822776e03cbcd1f4ac45629

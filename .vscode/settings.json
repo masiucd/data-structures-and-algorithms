@@ -11,6 +11,7 @@
     "problem-solving/three-number-sum",
     "problem-solving/sunset-views",
     "problem-solving/first-non-repeating-char",
-    "algorithms/recursion/reverse-string"
+    "algorithms/recursion/reverse-string",
+    "data-structures/stack/min-max-stack"
   ]
 }

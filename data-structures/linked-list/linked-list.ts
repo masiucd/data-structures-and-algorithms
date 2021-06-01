@@ -1,121 +1,90 @@
-class NodeC<T> {
-  data: T | null
-  next: NodeC<T> | null
-
-  constructor(data: T | null) {
-    this.data = data
+class Node {
+  value: number
+  next: Node | null
+  constructor(value: number) {
+    this.value = value
     this.next = null
   }
 }
 
-class List<T> {
-  head: NodeC<T> | null
-  tail: NodeC<T> | null
-  size: number
+class List {
+  head: Node | null
+  tail: Node | null
+  #size: number
   constructor() {
     this.head = null
     this.tail = null
-    this.size = 0
-  }
-  createNode(data: T): NodeC<T> {
-    return new NodeC<T>(data)
+    this.#size = 0
   }
 
-  push(data: T): this {
-    const newNode = this.createNode(data)
+  insertHead(value: number) {
+    const newNode = new Node(value)
     if (!this.head) {
       this.head = newNode
-      this.tail = this.head
-    } else {
-      if (!this.tail) return this
-      this.tail.next = newNode
       this.tail = newNode
+      this.#size++
+      return this
     }
-
-    this.size++
     return this
   }
 
-  prepend(data: T): this {
-    const newNode = this.createNode(data)
+  prepend(value: number) {
     if (!this.head) {
-      this.head = newNode
-      this.tail = this.head
+      this.insertHead(value)
+      return this
     }
+    const newNode = new Node(value)
     newNode.next = this.head
     this.head = newNode
-    this.size++
+    this.#size++
+    return this
+  }
+  append(value: number) {
+    if (!this.head) {
+      this.insertHead(value)
+      return this
+    }
+    if (!this.tail) return this
+    const newNode = new Node(value)
+    this.tail.next = newNode
+    this.tail = newNode
+    this.#size++
     return this
   }
 
-  printNodes(): T[] {
-    const xs: T[] = []
-    let current = this.head
-    while (current) {
-      xs.push(current.data!)
-      current = current.next
-    }
-    return xs
+  getSize(): number {
+    return this.#size
   }
 
-  get length() {
-    return this.size
+  printNodes(): void {
+    const nodesList: string[] = []
+    let currentNode = this.head
+    let tracker = 0
+    while (currentNode !== null) {
+      tracker++
+      nodesList.push(
+        tracker !== this.getSize() ? `${currentNode?.value} ->` : `${currentNode?.value} `
+      )
+      currentNode = currentNode.next
+    }
+    console.log(nodesList)
   }
 
   // sort() {}
   // reverse() {}
-  removeDuplicates(): this {
-    // works only if sorted
-    let current = this.head
-    let nextNode = current?.next
-    while (current) {
-      if (current.data === nextNode?.data) {
-        current.next = nextNode.next?.next!
-        this.size--
-      }
-      current = current.next
-      nextNode = current?.next
-    }
+  // removeDuplicates(): this {
+  //   // works only if sorted
+  //   let current = this.head
+  //   let nextNode = current?.next
+  //   while (current) {
+  //     if (current.data === nextNode?.data) {
+  //       current.next = nextNode.next?.next!
+  //       this.size--
+  //     }
+  //     current = current.next
+  //     nextNode = current?.next
+  //   }
 
-    return this
-  }
-
-  getHead() {
-    if (!this.head) return null
-    return this.head.data
-  }
-
-  getNode(index: number) {
-    if (index < 0 && index > this.size) return null
-    if (index === 0) return this.getHead()
-    let current = this.head
-    let counter = 0
-    while (index !== counter) {
-      if (!current?.next) return null
-      current = current.next
-      counter++
-    }
-    return current?.data
-  }
+  //   return this
+  // }
 }
-
-const l = new List()
-l.push(0)
-l.push(2)
-l.push(2)
-l.push(23)
-l.push(23)
-l.push(23)
-l.push(99)
-l.push(99)
-l.push(100)
-l.push(100)
-l.push(100)
-l.prepend(17)
-
-console.log(l.printNodes())
-console.log(l.length)
-console.log(l.removeDuplicates())
-console.log(l.printNodes())
-console.log(l.length)
-console.log(l.getNode(0))

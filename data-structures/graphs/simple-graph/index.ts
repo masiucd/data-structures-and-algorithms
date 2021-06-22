@@ -50,7 +50,7 @@ function createGraph(directed = false) {
       return nodes.map(({ key, children }) => {
         let result = key
         if (hasChildren(children)) {
-          result += `${children.map(c => ` ${c.key} `).join(" ")}`
+          result += `${children.map(c => ` ${c.key} `).join("\n")}`
         }
         return result
       })

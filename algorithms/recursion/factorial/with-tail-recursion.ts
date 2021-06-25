@@ -3,5 +3,3 @@ const factorialTailRecursion = (n: number, total = 1): number => {
   console.log(n, total)
   return factorialTailRecursion(n - 1, n * total)
 }
-
-// console.log(factorialTailRecursion(5))

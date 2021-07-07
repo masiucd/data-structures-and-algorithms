@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "strings"
 
 func isIsogram(str string) bool {
 
@@ -20,9 +17,4 @@ func isIsogram(str string) bool {
 		}
 	}
 	return true
-}
-
-func main() {
-	fmt.Println(isIsogram("six-year-old"))
-	fmt.Println(isIsogram("six year Old"))
 }

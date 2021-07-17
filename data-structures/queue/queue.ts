@@ -44,19 +44,3 @@ export function queue<T>() {
     getFirstItem,
   }
 }
-
-// const q = queue<string>()
-
-// q.enqueue("apple")
-// q.enqueue("orange")
-// q.enqueue("banana")
-
-// q.dequeue()
-// q.dequeue()
-// q.dequeue()
-
-// q.enqueue("pear")
-// q.dequeue()
-
-// q.enqueue("pear")
-// q.dequeue()

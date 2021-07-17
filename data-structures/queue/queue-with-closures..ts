@@ -26,11 +26,3 @@ function Queue() {
     },
   }
 }
-
-// const queue = Queue()
-// queue.enqueue(2)
-// queue.enqueue(34)
-// queue.enqueue(12)
-// queue.enqueue(122)
-// queue.dequeue()
-// queue.print()

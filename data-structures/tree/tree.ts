@@ -1,64 +1,55 @@
-interface TreeNode<T> {
-  key: T;
-  children: TreeNode<T>[];
-  appendChild: (childKey: T) => TreeNode<T>;
+interface Node {
+  key: string
+  children: Node[]
+  addChild: (key: string) => Node
 }
+function createNode(key: string): Node {
+  const children: Node[] = []
 
-function createNode<T>(key: T) {
-  const children: TreeNode<T>[] = [];
-
-  const appendChild = (childKey: T): TreeNode<T> => {
-    const childNode = createNode(childKey);
-    children.push(childNode);
-    return childNode;
-  };
+  const addChild = (key: string) => {
+    const node = createNode(key)
+    children.push(node)
+    return node
+  }
 
   return {
     key,
     children,
-    appendChild,
-  };
+    addChild,
+  }
 }
 
-function createTree<T>(rootKey: T) {
-  const root = createNode(rootKey);
+function createTree(rootKey: string) {
+  const root = createNode(rootKey)
 
-  const printNodes = (): string => {
-    let result = "";
-
-    const traverse = (
-      node: TreeNode<T>,
-      visitFn: (node: TreeNode<T>, depth: number) => void,
-      depth: number,
-    ) => {
-      visitFn(node, depth);
-      if (node.children.length) {
-        node.children.forEach(n => traverse(n, visitFn, depth + 1));
+  const print = () => {
+    let result = ""
+    const traverse = (node: Node, fn: (node: Node, level: number) => void, level: number) => {
+      fn(node, level)
+      if (node.children.length > 0) {
+        for (const n of node.children) {
+          traverse(n, fn, level + 1)
+        }
       }
-    };
+    }
+    // FN
+    const addKeyToResult = (node: Node, level: number) => {
+      result += result.length === 0 ? node.key : `\n${" ".repeat(level * 2)}${node.key}`
+    }
 
-    const addKeyToResult = (node: TreeNode<T>, depth: number): void => {
-      result += result.length === 0 ? node.key : `\n${" ".repeat(depth * 2)}${node.key}`;
-    };
+    traverse(root, addKeyToResult, 0)
+    return result
+  }
 
-    traverse(root, addKeyToResult, 0);
-    return result;
-  };
-
-  return {
-    root,
-    printNodes,
-  };
+  return {print, root}
 }
 
-const domTree = createTree("html");
-const head = domTree.root.appendChild("head");
-const body = domTree.root.appendChild("body");
-const title = body.appendChild("title = 'hello there!'");
-const header = body.appendChild("header");
-const main = body.appendChild("main");
-const h1 = header.appendChild("h1 - welcome to learn about trees ");
-const p = main.appendChild("p - 'trees are cool'");
-const footer = body.appendChild("footer");
-const copyRight = footer.appendChild(`Copyright - ${new Date().getFullYear()}`);
-// console.log(domTree.printNodes());
+const dom = createTree("html")
+const head = dom.root.addChild("head")
+const body = dom.root.addChild("body")
+head.addChild("title")
+const main = body.addChild("main")
+main.addChild("h1")
+main.addChild("section")
+body.addChild("footer")
+console.log(dom.print())

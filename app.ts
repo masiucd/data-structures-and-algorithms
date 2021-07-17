@@ -2,13 +2,13 @@ function Queue() {
   const queue: Array<number> = []
   return {
     enqueue(data: number) {
-      queue.push(data)
+      queue.unshift(data)
     },
     dequeue(): boolean {
       if (this.isEmpty()) {
         return false
       }
-      queue.shift()
+      queue.pop()
       return true
     },
     isEmpty() {
@@ -27,10 +27,10 @@ function Queue() {
   }
 }
 
-// const queue = Queue()
-// queue.enqueue(2)
-// queue.enqueue(34)
-// queue.enqueue(12)
-// queue.enqueue(122)
-// queue.dequeue()
-// queue.print()
+const queue = Queue()
+queue.enqueue(2)
+queue.enqueue(34)
+queue.enqueue(12)
+queue.enqueue(122)
+queue.dequeue()
+queue.print()

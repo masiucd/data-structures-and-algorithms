@@ -1,8 +1,10 @@
+import {queue} from "./queue.ts"
+
 function Queue() {
   const queue: Array<number> = []
   return {
     enqueue(data: number) {
-      queue.push(data)
+      queue.unshift(data)
     },
     dequeue(): boolean {
       if (this.isEmpty()) {

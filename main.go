@@ -1,5 +1,6 @@
 package main
 
+<<<<<<< HEAD
 import "fmt"
 
 // QueueItem struct
@@ -35,6 +36,33 @@ func (q *QueueItem) Show() {
 	for _, v := range q.items {
 		fmt.Print("=> " + v)
 	}
+=======
+import (
+	"fmt"
+	"strings"
+)
+
+func isIsogram(str string) bool {
+
+	charMap := map[rune]int{}
+	x := strings.Replace(strings.ToLower(str), "-", "", -1)
+	xx := strings.Replace(strings.ToLower(x), " ", "", -1)
+
+	for _, v := range xx {
+		charMap[v]++
+	}
+	for _, v := range charMap {
+		if v > 1 {
+			return false
+		}
+	}
+	return true
+}
+
+func main() {
+	fmt.Println(isIsogram("six-year-old"))
+	fmt.Println(isIsogram("six year Old"))
+>>>>>>> d38c50ec4871f5869d93f4318659e153770b5526
 }
 
 func main() {

@@ -1,7 +1,7 @@
-class BstN {
+class BstNode {
   value: number
-  left: BstN | null
-  right: BstN | null
+  left: BstNode | null
+  right: BstNode | null
   constructor(value: number) {
     this.value = value
     this.left = null
@@ -9,21 +9,21 @@ class BstN {
   }
 }
 
-class BstTree {
-  root: BstN | null
+class BinarySearchTree {
+  root: BstNode | null
   constructor() {
     this.root = null
   }
 
   insert(key: number) {
     if (!this.root) {
-      this.root = new BstN(key)
+      this.root = new BstNode(key)
     } else {
-      this.insertRecursive(this.root, new BstN(key))
+      this.insertRecursive(this.root, new BstNode(key))
     }
   }
 
-  insertRecursive(node: BstN, newNode: BstN) {
+  insertRecursive(node: BstNode, newNode: BstNode) {
     if (newNode.value < node.value) {
       // go left
       if (node.left === null) {
@@ -40,7 +40,7 @@ class BstTree {
     }
   }
 
-  breadthFirstTraversal(root: BstN, visitFn: (value: number) => void) {
+  breadthFirstTraversal(root: BstNode, visitFn: (value: number) => void) {
     if (root === null) return
     const queue = [root]
 
@@ -63,35 +63,25 @@ class BstTree {
     }
   }
 
-  getMin() {
-    if (this.root === null) return this
-    let current = this.root
-    while (current.left) {
-      current = current.left
-    }
-    return current.value
-  }
+  print() {
+    let result = ""
 
-  getMax() {
-    if (this.root === null) return this
-    let current = this.root
-    while (current.right) {
-      current = current.right
+    const addKeyToResult = (node: BstNode, level: number) => {
+      result += result.length === 0 ? node.value : `\n${"".repeat(level * 2)}${node.value}`
     }
-    return current.value
-  }
 
-  find(data: number) {
-    if (this.root === null) return this
-    let current = this.root
-    while (current.value !== data) {
-      if (data < current.value) {
-        current = current.left!
-      } else {
-        current = current.right!
-      }
-      if (current === null) return null
-    }
-    return current
+    return result
   }
 }
+
+const bst = new BinarySearchTree()
+bst.insert(11)
+bst.insert(10)
+bst.insert(12)
+bst.insert(1)
+bst.insert(16)
+
+const visitFn = (value: number) => {
+  console.log(value)
+}
+console.log(bst.breadthFirstTraversal(bst.root!, visitFn))

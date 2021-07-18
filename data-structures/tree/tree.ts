@@ -19,12 +19,14 @@ function createNode(key: string): Node {
   }
 }
 
+type VisitFnType = (node: Node, level: number) => void
+
 function createTree(rootKey: string) {
   const root = createNode(rootKey)
 
   const print = () => {
     let result = ""
-    const traverse = (node: Node, fn: (node: Node, level: number) => void, level: number) => {
+    const traverse = (node: Node, fn: VisitFnType, level: number) => {
       fn(node, level)
       if (node.children.length > 0) {
         for (const n of node.children) {

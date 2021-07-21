@@ -1,46 +1,77 @@
-interface StorageQ<T> {
-  box: Record<string, T>
+interface QNode<T> {
+  key: T
+  next: QNode<T> | null
+}
+
+interface Q<T> {
+  first: QNode<T> | null
+  last: QNode<T> | null
   size: number
-  headIndex: number
+  enqueue(key: T): QNode<T>
+  dequeue(): boolean
+  print(): string
+  isEmpty(): boolean
+  peek(): QNode<T> | null
+  length: number
 }
-export function queue<T>() {
-  const storage: StorageQ<T> = {
-    box: {},
-    size: 0,
-    headIndex: 0,
-  }
-
-  /**
-   * Enqueue a new value at the end of the queue
-   * @param item
-   */
-  const enqueue = (item: T) => {
-    const nextIndex = storage.size + storage.headIndex
-    storage.box[nextIndex] = item
-    storage.size++
-  }
-
-  /**
-   * dequeue the value from the beginning of the queue
-   * FIFO First In First Out
-   */
-  const dequeue = () => {
-    if (storage.size > 0) {
-      delete storage.box[storage.headIndex]
-      storage.size--
-      storage.headIndex++
-    } else {
-      return
-    }
-  }
-
-  const getSize = () => storage.size
-  const getFirstItem = () => (storage.size > 0 ? storage.box[storage.headIndex] : {})
-
+function createQueueNode<T>(key: T): QNode<T> {
   return {
-    enqueue,
-    dequeue,
-    getSize,
-    getFirstItem,
+    key,
+    next: null,
   }
 }
+
+function Queue<T>(): Q<T> {
+  return {
+    first: null,
+    last: null,
+    size: 0,
+    enqueue(key: T) {
+      const newNode = createQueueNode(key)
+      if (!this.first) {
+        this.first = newNode
+        this.last = newNode
+        this.size++
+        return newNode
+      }
+      this.last!.next = newNode
+      this.last = newNode
+      this.size++
+      return newNode
+    },
+    dequeue() {
+      if (!this.first) {
+        return false
+      }
+      if (this.first === this.last) {
+        this.last = null
+        this.size--
+      }
+      this.first = this.first.next
+      this.size--
+      return true
+    },
+    isEmpty() {
+      return this.size === 0
+    },
+    peek() {
+      if (this.first !== null) return this.first
+      return null
+    },
+    get length() {
+      return this.size
+    },
+    print() {
+      const list: string[] = []
+      let current = this.first
+      while (current) {
+        list.push(`${current!.key}`)
+        current = current.next
+      }
+
+      return list.join(" -> ")
+    },
+  }
+}
+
+export default Queue

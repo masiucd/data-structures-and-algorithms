@@ -1,56 +1,53 @@
-const hasChildren = (children: GraphNode[]) => children.length > 0
-interface GraphNode {
+interface Node {
   key: string
-  children: GraphNode[]
-  addChild(child: GraphNode): void
+  addChild(child: Node): Node[]
+  children: Node[]
 }
-interface Graph {
-  addNode(key: string): void
-  getNode(key: string): GraphNode | boolean
-  createEdge(key1: string, key2: string): boolean
-  print(): string[]
-}
-function createNode(key: string) {
-  const children: GraphNode[] = []
+function createNode(key: string): Node {
+  const children: Node[] = []
   return {
     key,
     children,
-    addChild(child: GraphNode) {
-      children.push(child)
+    addChild(node: Node) {
+      children.push(node)
+      return children
     },
   }
 }
 
 function createGraph(directed = false) {
+  const nodes: Node[] = []
   const edges: string[] = []
-  const nodes: GraphNode[] = []
-
   return {
+    nodes,
+    edges,
+    directed,
     addNode(key: string) {
-      nodes.push(createNode(key))
+      const newNode = createNode(key)
+      nodes.push(newNode)
+      return nodes
     },
-    getNode(key: string): GraphNode | undefined {
-      return nodes.find(n => n.key === key)
+    getNode(key: string) {
+      return nodes.find(node => node.key === key)
     },
-    createEdge(key1: string, key2: string) {
-      const node1 = this.getNode(key1)
-      const node2 = this.getNode(key2)
+
+    addEdge(nodeKey1: string, nodeKey2: string) {
+      const node1 = this.getNode(nodeKey1)
+      const node2 = this.getNode(nodeKey2)
 
       if (node1 && node2) {
         node1.addChild(node2)
-        edges.push(`--${key1}--${key2}`)
+        if (!directed) {
+          node2.addChild(node1)
+        }
+        edges.push(`${node1.key}${node2.key}`)
       }
-
-      if (!directed && node1 && node2) {
-        node2.addChild(node1)
-      }
-      return true
     },
     print() {
-      return nodes.map(({ key, children }) => {
-        let result = key
-        if (hasChildren(children)) {
-          result += `${children.map(c => ` ${c.key} `).join("\n")}`
+      return nodes.map(({key, children}) => {
+        let result = `${key}`
+        if (children.length > 0) {
+          result += ` => ${children.map(n => n.key).join(" ")}`
         }
         return result
       })
@@ -58,15 +55,17 @@ function createGraph(directed = false) {
   }
 }
 
-const g = createGraph(true) // directed
+const g = createGraph()
 
 g.addNode("Marcell")
-g.addNode("Filip")
-g.addNode("Jurek")
-g.addNode("Barbara")
+g.addNode("Fillip")
+g.addNode("Mamma")
+g.addNode("Tata")
+g.addNode("Vincent")
+g.addNode("Pysia")
 
-g.createEdge("Marcell", "Barbara")
-g.createEdge("Filip", "Jurek")
-g.createEdge("Barbara", "Jurek")
-g.createEdge("Jurek", "Marcell")
-// console.log(g.print())
+g.addEdge("Marcell", "Fillip")
+g.addEdge("Mamma", "Tata")
+g.addEdge("Vincent", "Pysia")
+
+console.log(g.print())

@@ -1,15 +1,15 @@
-class Node<T> {
+class NodeList<T> {
   data: T
-  next: Node<T> | null
+  next: NodeList<T> | null
   constructor(data: T) {
     this.data = data
     this.next = null
   }
 }
 
-class LinkedList<T> {
-  private head: Node<T> | null
-  private tail: Node<T> | null
+class List<T> {
+  private head: NodeList<T> | null
+  private tail: NodeList<T> | null
   private size: number
 
   constructor() {
@@ -19,7 +19,7 @@ class LinkedList<T> {
   }
 
   private makeNewNode(data: T) {
-    return new Node<T>(data)
+    return new NodeList<T>(data)
   }
 
   append(data: T) {
@@ -103,30 +103,23 @@ class LinkedList<T> {
     newTail.next = null
     this.tail = newTail
     this.size--
+    if (this.size === 0) {
+      this.head = null
+      this.tail = null
+    }
     return current
   }
-
-  // delete(index: number) {
-  //   if (index === 0) {
-  //     return this.removeHead()
-  //   }
-  //   if (index > this.size) {
-  //     return null
-  //   }
-  //   let counter = 0
-  //   let current = this.head
-  // }
 }
 
-const l = new LinkedList()
-l.append("apple")
-l.append("banana")
-l.append("orange")
-l.append("kiwi")
-l.prepend("Jack fruit")
-l.prepend("Kiwi")
-l.pop()
-l.pop()
-console.log(l.print())
-console.log(l.length)
+const list = new List()
+list.append("apple")
+list.append("banana")
+list.append("orange")
+list.append("kiwi")
+list.prepend("Jack fruit")
+list.prepend("Kiwi")
+list.pop()
+list.pop()
+console.log(list.print())
+console.log(list.length)
 // console.log(l.getNode(0))
